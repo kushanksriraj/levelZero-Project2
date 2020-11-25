@@ -1,4 +1,4 @@
-### CLI based Quiz on Indian Start-ups! Made with JavaScript.
+## CLI based Quiz on Indian Start-ups! Made with JavaScript.
 
 This is a quiz game called "The Indian Start-up Quiz".   
    
