@@ -1,18 +1,18 @@
-var readlineSync = require('readline-sync');
+const readlineSync = require('readline-sync');
 const chalk = require('chalk');
 
-var indian  = chalk.hex('#FF9933').bold('Indian ');
-var startup = chalk.hex('#FFFFFF').bold('Start-up ');
-var quiz    = chalk.hex('#138808').bold('Quiz');
+const indian  = chalk.hex('#FF9933').bold('Indian');
+const startup = chalk.hex('#FFFFFF').bold('Start-up');
+const quiz    = chalk.hex('#138808').bold('Quiz');
 
-var userName = readlineSync.question("Enter your name to begin: ");
+const userName = readlineSync.question(`Enter your name to begin: `);
 
 console.clear();
 
-console.log("Welcome " + chalk.underline(userName) + " to the " +
-             indian + startup + quiz + "!\n");
+console.log(`Welcome ${chalk.underline(userName)} to the ${indian} ${startup} ${quiz}!
+`);
 
-console.log(chalk.bgRed.bold("Rules :") + chalk.bold(`
+console.log(chalk.bgRed.bold(`Rules :`) + chalk.bold(`
    1) For each question, enter the option number as 1, 2, 3 or 4.
    2) You DO NOT need to press enter after the option number.
    3) You will get 5 points for each correct answer. [+5 for correct]
@@ -20,12 +20,13 @@ console.log(chalk.bgRed.bold("Rules :") + chalk.bold(`
    5) After every right answer, you will get to see interesting facts!`
 ));
 
-readlineSync.question(chalk.bold("\nPress enter to start the quiz:"));
+readlineSync.question(chalk.bold(`
+Press enter to start the quiz:`));
 
 
 //---------------------------QUIZ BEGINS-----------------------------
 
-var score = 0;
+let score = 0;
 
 //play()
 function play(qno, question, options, answer, fact){
@@ -34,7 +35,7 @@ function play(qno, question, options, answer, fact){
   console.log(chalk.bgRed.bold("Q."+qno+" of 10:\n\n") + "    " + question);
 
   //get user's answer
-  var ansIndex = readlineSync.keyInSelect(options, 
+  let ansIndex = readlineSync.keyInSelect(options, 
                                           "Enter option number : ", 
                                           {cancel : false}
                                           );
@@ -56,7 +57,7 @@ function play(qno, question, options, answer, fact){
                + chalk.inverse.red.bold(score) + "\n");
   }
 
-  var userResponse = readlineSync.question(
+  const userResponse = readlineSync.question(
                       chalk.bold("\nPress enter to continue or type !q to quit: "));
 
  return userResponse;
@@ -64,7 +65,7 @@ function play(qno, question, options, answer, fact){
 
 
 //-------------------------Questions-------------------------
-var questionsBank = [
+const questionsBank = [
   {
     question : 
     `Which Indian company was recently in news for testing an
@@ -206,7 +207,7 @@ var questionsBank = [
     fact : 
     `According to reports, KRAFTON, which is a
     collective of independent game development teams
-    responsible for various entertainment properties like
+    responsible for letious entertainment properties like
     PUBG and TERA have tied up with Microsoft Azure.`
   },
 
@@ -237,14 +238,15 @@ var questionsBank = [
 
 
 //--------------------Quiz Execution---------------------
-for(var i=0; i < questionsBank.length; i++){
+for(let i=0; i < questionsBank.length; i++){
 
  console.clear();
 
- console.log("The " + indian + startup + quiz + "\n");
+ console.log(`The ${indian} ${startup} ${quiz}
+ `);
 
  //get current question
- var currentSet = questionsBank[i];
+ let currentSet = questionsBank[i];
  //call play()
  response = play(i+1, 
                  currentSet.question, 
@@ -263,35 +265,35 @@ console.clear();
 
 
 //------------------------Scores-------------------------
-console.log("The " + indian + startup + quiz + "\n");
-console.log("Your final score : "
+console.log(`The ${indian} ${startup} ${quiz}`);
+console.log("\nYour final score : "
             + chalk.inverse.green.bold(score) + "\n");
             
 console.log("Your name : " + chalk.underline.bold(userName) + "\n");
 
-var highScores = [
+const highScores = [
   {
-    player_Name : "Kushank",
+    playerName : "Kushank",
     score : 50
   }, 
   
   {
-    player_Name : "Vishal",
+    playerName : "Vishal",
     score : 38
   },
 
   {
-    player_Name : "Jaya",
+    playerName : "Jaya",
     score : 32
   },
   
   {
-    player_Name : "Arjun",
+    playerName : "Arjun",
     score : 26
   },
 
   {
-    player_Name : "Aarav",
+    playerName : "Aarav",
     score : 20
   },
 ];
@@ -299,13 +301,13 @@ var highScores = [
 console.log('Check out the high scores: ');
 console.table(highScores);
 
-var high = false;
-for(var i = 0; i<highScores.length; i++){
-  if (score > highScores[i].score)
-  {
+let high = false;
+
+highScores.forEach( person => {
+  if(score >  person.score){
     high = true;
   }
-}
+})
 
 if(high){
  console.log(`\nYay! You made a high score! 
